@@ -1,0 +1,15 @@
+.authenticationForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.authenticationInput {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    margin-bottom: 1rem;
+}
+
+.authenticationInput input {
+    width: 50%;
+}
