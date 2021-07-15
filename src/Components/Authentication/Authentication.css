@@ -1,26 +1,32 @@
 .authenticationForm {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .authenticationInput {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
 .authenticationInput input {
-    width: 50%;
+  width: 50%;
 }
 
 .authenticationInput label {
-    width: 50%;
+  width: 50%;
 }
 
 .authenticationEnterBtn {
-    width: fit-content;
-    display: flex;
-    margin-left: auto;
+  width: fit-content;
+  display: flex;
+  margin-left: auto;
 }
 
+.shieldLockBtn:hover,
+.shieldCheckBtn:hover,
+.shieldLockBtn:focus,
+.shieldCheckBtn:focus {
+  color: #0a58ca;
+}
