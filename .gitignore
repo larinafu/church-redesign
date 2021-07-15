@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Website
+/church-redesign/src/Components/Authentication/Authentication.jsx
