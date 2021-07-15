@@ -14,7 +14,7 @@ const Authentication = (props) => {
   const [hasFeedback, setHasFeedback] = useState(false);
   // [mod name, mod userId, mod password]
   const mods = [
-    ["Larina", "larinafu", "hello"],
+    ["Larina", "larinafu", "yo"],
     ["Katherine", "katherinehu", "I'llchangethislater"],
   ];
 
