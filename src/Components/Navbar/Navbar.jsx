@@ -1,5 +1,6 @@
-import './Navbar.css'
-import heart from '../../Images/heart.svg'
+import { Link } from "react-router-dom";
+import "./Navbar.css";
+import heart from "../../Images/heart.svg";
 const Navbar = (props) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,28 +22,40 @@ const Navbar = (props) => {
         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                Home
-              </a>
+              <Link to="/">
+                <a className="nav-link active" aria-current="page" href="#">
+                  Home
+                </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                About
-              </a>
+              <Link to="/about">
+                <a className="nav-link active" aria-current="page" href="#">
+                  About
+                </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                Worship
-              </a>
+              <Link to="/worship">
+                <a className="nav-link active" aria-current="page" href="#">
+                  Worship
+                </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                Sermons
-              </a>
+              <Link to="/sermons">
+                <a className="nav-link active" aria-current="page" href="#">
+                  Sermons
+                </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="btn rounded-pill btn-outline-primary" aria-current="page" href="#">
-                Donate <img src={heart} alt='a heart icon'/>
+              <a
+                className="btn rounded-pill btn-outline-primary"
+                aria-current="page"
+                href="#"
+              >
+                Donate <img src={heart} alt="a heart icon" />
               </a>
             </li>
           </ul>
