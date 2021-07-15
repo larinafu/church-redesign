@@ -6,6 +6,7 @@ import Home from "./Components/WebPages/English/Home/Home";
 import About from "./Components/WebPages/English/About/About";
 import Worship from "./Components/WebPages/English/Worship/Worship";
 import Sermons from "./Components/WebPages/English/Sermons/Sermons";
+import SiteInfo from "./Components/WebPages/English/SiteInfo/SiteInfo";
 
 import Announcement from "./Components/Announcement/Announcement";
 import Announcements from "./Components/Announcements/Announcements";
@@ -26,6 +27,7 @@ function App() {
       <Route exact path="/about" component={About} />
       <Route exact path="/worship" component={Worship} />
       <Route exact path="/sermons" component={Sermons} />
+      <Route exact path="/site-info" component={SiteInfo} />
       
       <Announcements isModerator={isMod} />
       <Sermon isModerator={isMod} />

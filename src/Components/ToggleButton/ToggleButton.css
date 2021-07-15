@@ -1,0 +1,22 @@
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.toggleBtnEn,
+.toggleBtnCh {
+  display: flex;
+  align-items: center;
+}
+
+.toggleBtnEn p {
+  width: 2rem;
+  margin: 0 0.2rem 0 0;
+  padding: 0;
+}
+
+.toggleBtnCh p {
+  width: 2rem;
+  margin: 0 0 0 0.2rem;
+  padding: 0;
+}
