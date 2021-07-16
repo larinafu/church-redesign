@@ -1,0 +1,25 @@
+.announcementsContainer ul {
+  list-style-type: none;
+  padding: 0;
+  height: 30rem;
+  overflow: auto;
+}
+
+.announcementsHeaderContainer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.announcementsHeaderContainer h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.announcementsHeaderContainer .btn:hover {
+  color: #0a58ca;
+}
+
+.markdownContainer ul{
+    pointer-events: none;
+}

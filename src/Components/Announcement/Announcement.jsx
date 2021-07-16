@@ -1,20 +1,36 @@
 import { useState } from "react";
+import MDEditor from "@uiw/react-md-editor";
 import "./Announcement.css";
 
 import pencil from "../../Images/pencil-square.svg";
-import { hasCommonDiff } from "jest-diff/build/printDiffs";
 const Announcement = (props) => {
-    const [announcementDesc, setAnnouncementDesc] = useState('');
-    console.log(`announcementdesc is ${announcementDesc}`)
-    const handleAnnouncementSubmit = () => {
-        {}
+  const [announcementDesc, setAnnouncementDesc] = useState("");
+  const handleAnnouncementSubmit = () => {
+    {
     }
+  };
   return (
     <>
       <section>
         <div className="card announcementCard">
           <div className="card-body">
-            This is some text within a card body.
+            <div className="cardHeader">
+              <div className="modAnnouncementNameContainer">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-person-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                </svg>
+                <p>{props.modName || "mod name here"}</p>
+              </div>
+              <p>{props.announcementDate || "12/12/12"}</p>
+            </div>
+            <MDEditor.Markdown source={props.announcementBody} />
             {props.isModerator && (
               <>
                 <button
@@ -61,7 +77,9 @@ const Announcement = (props) => {
                           <textarea
                             id="announcementDesc"
                             name="announcementDesc"
-                            onChange={(e) => setAnnouncementDesc(e.target.value)}
+                            onChange={(e) =>
+                              setAnnouncementDesc(e.target.value)
+                            }
                           ></textarea>
                           <button type="submit" className="btn btn-primary">
                             Save changes
