@@ -1,14 +1,20 @@
+// Packages
 import { useState, useEffect } from "react";
+import MDEditor from "@uiw/react-md-editor";
+
+// Components
 import Announcement from "../Announcement/Announcement";
 import Authentication from "../Authentication/Authentication";
-import MDEditor from "@uiw/react-md-editor";
+
+// CSS File
 import "./Announcements.css";
+
+// Database
 import db from "../Firestore/Firestore";
+
 const Announcements = (props) => {
   const [announcements, setAnnouncements] = useState([]);
   const [announcementTitle, setAnnouncementTitle] = useState("");
-  const [announcementDescription, setAnnouncementDescription] =
-    useState("hello");
   const [announcementChange, setAnnouncementChange] = useState(false);
   const [value, setValue] = useState("**Hello world!!!**");
 
@@ -90,7 +96,7 @@ const Announcements = (props) => {
           />
         </div>
       </div>
-      <ul>
+      <ul className='border'>
         {announcements.map((announcement) => {
           return <li>{announcement}</li>;
         })}
@@ -122,7 +128,7 @@ const Announcements = (props) => {
                   submitAnnouncementToFirestore();
                 }}
               >
-                <div className="addAnnouncementInput">
+                {/* <div className="addAnnouncementInput">
                   <label className="text-start" htmlFor="annoucementTitle">
                     Title
                   </label>
@@ -132,24 +138,8 @@ const Announcements = (props) => {
                     type="text"
                     onChange={(e) => setAnnouncementTitle(e.target.value)}
                   />
-                </div>
+                </div> */}
                 <div className="addAnnouncementInput">
-                  <label
-                    className="text-start"
-                    htmlFor="announcementDescription"
-                  >
-                    Description
-                  </label>
-                  {/* <textarea
-                    id="announcementDescription"
-                    name="announcementDescription"
-                    onChange={(e) => setAnnouncementDescription(e.target.value)}
-                  ></textarea> */}
-                  {/* <MDEditor
-                    value={announcementDescription}
-                    onChange={setAnnouncementDescription}
-                  />
-                  <MDEditor.Markdown source={announcementDescription} /> */}
                   <h3 className="fs-2 fw-light">
                     This announcement feature uses markdown!
                   </h3>
@@ -157,13 +147,17 @@ const Announcements = (props) => {
                     wrap *single asterisks around text* for{" "}
                     <em>italicized font</em>
                   </p>
+                  <p>
+                    wrap **single asterisks around text** for{" "}
+                    <strong>bolded font</strong>
+                  </p>
                   <div class="markdownContainer">
                     <MDEditor value={value} onChange={setValue} />
                   </div>
                 </div>
                 <button
                   type="submit"
-                  class="btn btn-primary"
+                  class="btn btn-primary modal-footer mt-3"
                   data-bs-dismiss="modal"
                 >
                   Create Announcement

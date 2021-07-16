@@ -1,6 +1,10 @@
+// Components
 import Announcements from "../../../Announcements/Announcements";
+
+// CSS file
+import './Home.css'
+
 const Home = (props) => {
-    console.log(props.isModerator)
   return (
     <section>
       <div

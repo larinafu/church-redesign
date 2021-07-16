@@ -4,10 +4,13 @@ const SiteInfo = (props) => {
       <section className="bg-light">
         <div className="container">
           <h1 className="fs-1 lead">Site Developers</h1>
+          <p>Software Developers</p>
           <ul>
             <li>Larina Fu</li>
             <li>Katherine Hu</li>
           </ul>
+          <p>Designers</p>
+          <li>Person 1</li>
         </div>
       </section>
       <section>
@@ -33,8 +36,8 @@ const SiteInfo = (props) => {
             <li>VSCode</li>
           </ul>
           <p>
-            Please look at the public <a href="#">GitHub repository</a> for this site
-            for a full outline of the coding process.
+            Please look at the public <a href="#">GitHub repository</a> for this
+            site for a full outline of the coding process.
           </p>
         </div>
       </section>

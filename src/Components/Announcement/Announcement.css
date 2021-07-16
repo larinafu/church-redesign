@@ -24,3 +24,20 @@
     display: flex;
     justify-content: space-between;
 }
+
+.announcementFooter {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.editedByContainer {
+    display: flex;
+    align-items: flex-end;
+}
+
+.editedByContainer p{
+    margin: 0 .2rem;
+    padding: 0;
+    line-height: 1rem;;
+}

@@ -1,5 +1,6 @@
+// Imports
 import { useState } from "react";
-import { Route, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 // Site Pages (English)
 import Home from "./Components/WebPages/English/Home/Home";
@@ -8,19 +9,18 @@ import Worship from "./Components/WebPages/English/Worship/Worship";
 import Sermons from "./Components/WebPages/English/Sermons/Sermons";
 import SiteInfo from "./Components/WebPages/English/SiteInfo/SiteInfo";
 
-import Announcement from "./Components/Announcement/Announcement";
-import Announcements from "./Components/Announcements/Announcements";
-import Authentication from "./Components/Authentication/Authentication";
+// Other components
 import Navbar from "./Components/Navbar/Navbar";
 import Sermon from "./Components/Sermon/Sermon";
 import Footer from "./Components/Footer/Footer";
-import logo from "./logo.svg";
+
+// CSS files
 import "./App.css";
-// import {Authentication} from './Components/Authentication/Authentication.js'
 
 function App() {
   const [isMod, setIsMod] = useState(false);
   const [modName, setModName] = useState("");
+  const [isEnglish, setIsEnglish] = useState(false);
   return (
     <div className="App">
       <Navbar />
@@ -42,7 +42,14 @@ function App() {
       </Route>
       <Route exact path="/about" component={About} />
       <Route exact path="/worship" component={Worship} />
-      <Route exact path="/sermons" component={Sermons} />
+      <Route exact path="/sermons" component={Sermons}>
+        <Sermons
+          isModerator={isMod}
+          setIsModerator={setIsMod}
+          modName={modName}
+          setModName={setModName}
+        />
+      </Route>
       <Route exact path="/site-info" component={SiteInfo} />
       <Sermon isModerator={isMod} />
       <Footer />
