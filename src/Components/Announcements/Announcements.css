@@ -1,10 +1,13 @@
-.announcementsContainer ul {
+.announcementsContainer > ul {
   list-style-type: none;
   padding: 0;
   height: 30rem;
   overflow: auto;
 }
 
+.announcementsContainer img {
+    max-height: 20rem;
+}
 .announcementsHeaderContainer {
   display: flex;
   align-items: flex-end;
@@ -20,6 +23,10 @@
   color: #0a58ca;
 }
 
-.markdownContainer ul{
-    pointer-events: none;
+.markdownContainer ul {
+  /* pointer-events: none; */
+}
+
+.modalAnnouncementContainer {
+  max-width: 50rem;
 }

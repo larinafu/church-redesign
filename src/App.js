@@ -24,21 +24,27 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Route exact path={"/"} component={Home} />
-      <Route exact path={"/home"} component={Home} />
+      <Route exact path={"/"} component={Home}>
+        <Home
+          isModerator={isMod}
+          setIsModerator={setIsMod}
+          modName={modName}
+          setModName={setModName}
+        />
+      </Route>
+      <Route exact path={"/home"} component={Home}>
+        <Home
+          isModerator={isMod}
+          setIsModerator={setIsMod}
+          modName={modName}
+          setModName={setModName}
+        />
+      </Route>
       <Route exact path="/about" component={About} />
       <Route exact path="/worship" component={Worship} />
       <Route exact path="/sermons" component={Sermons} />
       <Route exact path="/site-info" component={SiteInfo} />
-
-      <Announcements isModerator={isMod} modName={modName} />
       <Sermon isModerator={isMod} />
-      <Authentication
-        isModerator={isMod}
-        setIsModerator={setIsMod}
-        modName={modName}
-        setModName={setModName}
-      />
       <Footer />
     </div>
   );
