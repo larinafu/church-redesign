@@ -51,6 +51,9 @@ const Announcements = (props) => {
           announcementBody={doc.data().description}
           isModerator={props.isModerator}
           value={announcementBody}
+          announcementAuthor={doc.data().user}
+          modUser={props.modUser}
+          modType={props.modType}
         />
       </li>,
     ]);
@@ -65,6 +68,7 @@ const Announcements = (props) => {
       mod: props.modName,
       description: announcementBody,
       title: announcementTitle,
+      user: props.modUser,
     });
     setAnnouncementChange(!announcementChange);
   };
@@ -96,9 +100,7 @@ const Announcements = (props) => {
           )}
         </div>
       </div>
-      <ul className="border">
-        {announcements}
-      </ul>
+      <ul className="border">{announcements}</ul>
       <div
         className="modal fade"
         id="addAnnouncementModal"

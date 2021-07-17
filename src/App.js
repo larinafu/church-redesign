@@ -23,19 +23,43 @@ import "./App.css";
 import db from "./Components/Firestore/Firestore";
 
 function App() {
+  // mod information hooks
+  // is website user a mod? TODO: get rid of this hook eventually
   const [isMod, setIsMod] = useState(false);
+
+  // moderator's screen name
   const [modName, setModName] = useState("");
 
+  // moderator's edit privileges
+  const [modType, setModType] = useState("");
+
+  // moderator's username
+  const [modUser, setModUser] = useState("");
+
+  // page content hooks
+  // content on home page
   const [homeBody, setHomeBody] = useState("");
 
-  const isMobile = useMediaQuery({ query: "(max-width: 60em)" });
-  const isRealMobile = useMediaQuery ({ query: "(max-device-width: 60em"});
+  // Media queries
 
+  // is user's browser mobile-sized?
+  const isMobile = useMediaQuery({ query: "(max-width: 60em)" });
+
+  // is user on an actual phone?
+  const isRealMobile = useMediaQuery({ query: "(max-device-width: 60em" });
+
+  /**
+   * Sets all of the site pages
+   * TODO: implement other pages
+   * @param {*} doc 
+   */
   const renderPages = (doc) => {
     if (doc.id === "home") {
       setHomeBody(doc.data().pageBody);
     }
   };
+
+  // Gets the pages from firestore and renders them onto site
   useEffect(() => {
     db.collection("pages")
       .get()
@@ -46,7 +70,13 @@ function App() {
       });
   }, []);
 
+  /**
+   * Updates the pageBodies in the firestore
+   * "pages" collection when edited by a moderator
+   */
   const handleSavingEdits = () => {
+    setModType("");
+    setModUser("");
     db.collection("pages").doc("home").update({
       lastEditedBy: modName,
       lastEditedDate: new Date(),
@@ -68,8 +98,11 @@ function App() {
         setIsModerator={setIsMod}
         modName={modName}
         setModName={setModName}
+        modType={modType}
+        setModType={setModType}
         saveChanges={handleSavingEdits}
         isRealMobile={isRealMobile}
+        setModUser={setModUser}
       />
       <Route exact path={"/"} component={Home}>
         <Home
@@ -77,9 +110,11 @@ function App() {
           setIsModerator={setIsMod}
           modName={modName}
           setModName={setModName}
+          modType={modType}
           homeBody={homeBody}
           setHomeBody={setHomeBody}
           isMobile={isMobile}
+          modUser={modUser}
         />
       </Route>
       <Route exact path={"/home"} component={Home}>

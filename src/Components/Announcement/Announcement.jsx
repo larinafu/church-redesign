@@ -4,6 +4,7 @@ import "./Announcement.css";
 
 const Announcement = (props) => {
   const [announcementDesc, setAnnouncementDesc] = useState("");
+
   const handleAnnouncementSubmit = () => {
     {
     }
@@ -93,7 +94,7 @@ const Announcement = (props) => {
               </>
             )}
           </div>
-          {props.isModerator && (
+          {(props.modType==='master' || props.modUser === props.announcementAuthor) && (
             <div className="card-footer bg-white border-0 announcementFooter">
               <button
                 className="btn"

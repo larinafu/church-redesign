@@ -56,7 +56,7 @@ const Home = (props) => {
       <section className="row mt-3 gx-0 homeSectionContainer">
         <main className="col-12 col-md-8 p-3 text-start homeBody">
           <div className="ms-2">
-            {props.isModerator ? (
+            {(props.modType !== 'light' && props.modType !== '') ? (
               <div className="homeMarkdownContainer">
                 <MDEditor
                   value={props.homeBody}
@@ -76,6 +76,8 @@ const Home = (props) => {
             setIsModerator={props.setIsModerator}
             modName={props.modName}
             setModName={props.setModName}
+            modType={props.modType}
+            modUser={props.modUser}
           />
         </aside>
       </section>
