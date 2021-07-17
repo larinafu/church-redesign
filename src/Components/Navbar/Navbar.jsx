@@ -76,13 +76,13 @@ const Navbar = (props) => {
               </a>
             </li>
             <li className="nav-item">
-              <Authentication
+              {/* <Authentication
                 isModerator={props.isModerator}
                 setIsModerator={props.setIsModerator}
                 modName={props.modName}
                 setModName={props.setModName}
                 saveChanges={props.handleSavingEdits}
-              />
+              /> */}
             </li>
           </ul>
         </div>

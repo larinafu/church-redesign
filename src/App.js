@@ -14,6 +14,7 @@ import SiteInfo from "./Components/WebPages/English/SiteInfo/SiteInfo";
 import Navbar from "./Components/Navbar/Navbar";
 import Sermon from "./Components/Sermon/Sermon";
 import Footer from "./Components/Footer/Footer";
+import Authentication from "./Components/Authentication/Authentication";
 
 // CSS files
 import "./App.css";
@@ -25,33 +26,33 @@ function App() {
   const [isMod, setIsMod] = useState(false);
   const [modName, setModName] = useState("");
 
-  const [homeBody, setHomeBody] = useState("")
+  const [homeBody, setHomeBody] = useState("");
 
-  const isMobile = useMediaQuery({ query: '(max-width: 60em)' })
+  const isMobile = useMediaQuery({ query: "(max-width: 60em)" });
+  const isRealMobile = useMediaQuery ({ query: "(max-device-width: 60em"});
 
   const renderPages = (doc) => {
-    if (doc.id === 'home') {
-      setHomeBody(doc.data().pageBody)
+    if (doc.id === "home") {
+      setHomeBody(doc.data().pageBody);
     }
-  }
+  };
   useEffect(() => {
     db.collection("pages")
       .get()
       .then((snapshot) => {
         snapshot.docs.forEach((doc) => {
-          renderPages(doc)
+          renderPages(doc);
         });
       });
   }, []);
 
   const handleSavingEdits = () => {
-    db.collection("pages").doc('home').update({
+    db.collection("pages").doc("home").update({
       lastEditedBy: modName,
       lastEditedDate: new Date(),
-      pageBody: homeBody
-    })
-      
-  }
+      pageBody: homeBody,
+    });
+  };
 
   return (
     <div className="App">
@@ -61,6 +62,14 @@ function App() {
         modName={modName}
         setModName={setModName}
         handleSavingEdits={handleSavingEdits}
+      />
+      <Authentication
+        isModerator={isMod}
+        setIsModerator={setIsMod}
+        modName={modName}
+        setModName={setModName}
+        saveChanges={handleSavingEdits}
+        isRealMobile={isRealMobile}
       />
       <Route exact path={"/"} component={Home}>
         <Home

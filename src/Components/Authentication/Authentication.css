@@ -24,6 +24,18 @@
   margin-left: auto;
 }
 
+.shieldCheckBtn, .shieldLockBtn {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: #fff;
+    border: .05rem solid black;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    z-index: 3000
+}
+
 .shieldLockBtn:hover,
 .shieldCheckBtn:hover,
 .shieldLockBtn:focus,
