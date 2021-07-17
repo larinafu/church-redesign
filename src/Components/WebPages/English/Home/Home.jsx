@@ -58,7 +58,12 @@ const Home = (props) => {
           <div className="ms-2">
             {props.isModerator ? (
               <div className="homeMarkdownContainer">
-                <MDEditor value={props.homeBody} onChange={props.setHomeBody} preview='edit' height={400}/>
+                <MDEditor
+                  value={props.homeBody}
+                  onChange={props.setHomeBody}
+                  preview={props.isMobile ? 'edit':'live'}
+                  height={400}
+                />
               </div>
             ) : (
               <MDEditor.Markdown source={props.homeBody} />

@@ -1,6 +1,7 @@
 // Imports
 import { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 // Site Pages (English)
 import Home from "./Components/WebPages/English/Home/Home";
@@ -25,6 +26,8 @@ function App() {
   const [modName, setModName] = useState("");
 
   const [homeBody, setHomeBody] = useState("")
+
+  const isMobile = useMediaQuery({ query: '(max-width: 60em)' })
 
   const renderPages = (doc) => {
     if (doc.id === 'home') {
@@ -67,6 +70,7 @@ function App() {
           setModName={setModName}
           homeBody={homeBody}
           setHomeBody={setHomeBody}
+          isMobile={isMobile}
         />
       </Route>
       <Route exact path={"/home"} component={Home}>
