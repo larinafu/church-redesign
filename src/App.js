@@ -1,5 +1,5 @@
 // Imports
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
 
 // Site Pages (English)
@@ -9,7 +9,7 @@ import Worship from "./Components/WebPages/English/Worship/Worship";
 import Sermons from "./Components/WebPages/English/Sermons/Sermons";
 import SiteInfo from "./Components/WebPages/English/SiteInfo/SiteInfo";
 
-// Other components
+// Other child components
 import Navbar from "./Components/Navbar/Navbar";
 import Sermon from "./Components/Sermon/Sermon";
 import Footer from "./Components/Footer/Footer";
@@ -17,19 +17,56 @@ import Footer from "./Components/Footer/Footer";
 // CSS files
 import "./App.css";
 
+// database
+import db from "./Components/Firestore/Firestore";
+
 function App() {
   const [isMod, setIsMod] = useState(false);
   const [modName, setModName] = useState("");
-  const [isEnglish, setIsEnglish] = useState(false);
+
+  const [homeBody, setHomeBody] = useState("")
+
+  const renderPages = (doc) => {
+    if (doc.id === 'home') {
+      setHomeBody(doc.data().pageBody)
+    }
+  }
+  useEffect(() => {
+    db.collection("pages")
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          renderPages(doc)
+        });
+      });
+  }, []);
+
+  const handleSavingEdits = () => {
+    db.collection("pages").doc('home').update({
+      lastEditedBy: modName,
+      lastEditedDate: new Date(),
+      pageBody: homeBody
+    })
+      
+  }
+
   return (
     <div className="App">
-      <Navbar />
+      <Navbar
+        isModerator={isMod}
+        setIsModerator={setIsMod}
+        modName={modName}
+        setModName={setModName}
+        handleSavingEdits={handleSavingEdits}
+      />
       <Route exact path={"/"} component={Home}>
         <Home
           isModerator={isMod}
           setIsModerator={setIsMod}
           modName={modName}
           setModName={setModName}
+          homeBody={homeBody}
+          setHomeBody={setHomeBody}
         />
       </Route>
       <Route exact path={"/home"} component={Home}>

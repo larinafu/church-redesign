@@ -14,9 +14,11 @@ import db from "../Firestore/Firestore";
 
 const Announcements = (props) => {
   const [announcements, setAnnouncements] = useState([]);
+  const [announcementIds, setAnnouncementIds] = useState([]);
   const [announcementTitle, setAnnouncementTitle] = useState("");
   const [announcementChange, setAnnouncementChange] = useState(false);
-  const [value, setValue] = useState("**Hello world!!!**");
+  const [announcementBody, setAnnouncementBody] =
+    useState("**Hello world!!!**");
 
   const formatDate = (dateObject) => {
     let date = JSON.stringify(dateObject);
@@ -32,6 +34,7 @@ const Announcements = (props) => {
       .get()
       .then((snapshot) => {
         setAnnouncements([]);
+        setAnnouncementIds([]);
         snapshot.docs.forEach((doc) => {
           renderAnnouncements(doc);
         });
@@ -41,14 +44,18 @@ const Announcements = (props) => {
   const renderAnnouncements = (doc) => {
     setAnnouncements((announcements) => [
       ...announcements,
-      <Announcement
-        modName={doc.data().mod}
-        announcementDate={doc.data().date}
-        announcementBody={doc.data().description}
-        isModerator={props.isModerator}
-        value={value}
-      />,
+      <li key={doc.id}>
+        <Announcement
+          modName={doc.data().mod}
+          announcementDate={doc.data().date}
+          announcementBody={doc.data().description}
+          isModerator={props.isModerator}
+          value={announcementBody}
+        />
+      </li>,
     ]);
+
+    setAnnouncementIds((announcementIds) => [...announcementIds, doc.id]);
   };
 
   const submitAnnouncementToFirestore = () => {
@@ -56,7 +63,7 @@ const Announcements = (props) => {
       timestamp: new Date(),
       date: formatDate(new Date()),
       mod: props.modName,
-      description: value,
+      description: announcementBody,
       title: announcementTitle,
     });
     setAnnouncementChange(!announcementChange);
@@ -65,7 +72,6 @@ const Announcements = (props) => {
   return (
     <section className="container-sm announcementsContainer">
       <div className="announcementsHeaderContainer">
-        <h1 className="display-3 text-start">Announcements</h1>
         <div>
           {props.isModerator && (
             <button
@@ -79,7 +85,7 @@ const Announcements = (props) => {
                   width="35"
                   height="35"
                   fill="currentColor"
-                  class="bi bi-file-earmark-plus"
+                  className="bi bi-file-earmark-plus"
                   viewBox="0 0 16 16"
                 >
                   <path d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
@@ -88,40 +94,32 @@ const Announcements = (props) => {
               </div>
             </button>
           )}
-          <Authentication
-            isModerator={props.isModerator}
-            setIsModerator={props.setIsModerator}
-            modName={props.modName}
-            setModName={props.setModName}
-          />
         </div>
       </div>
-      <ul className='border'>
-        {announcements.map((announcement) => {
-          return <li>{announcement}</li>;
-        })}
+      <ul className="border">
+        {announcements}
       </ul>
       <div
-        class="modal fade"
+        className="modal fade"
         id="addAnnouncementModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog modalAnnouncementContainer">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
+        <div className="modal-dialog modalAnnouncementContainer">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
                 Modal title
               </h5>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -151,13 +149,16 @@ const Announcements = (props) => {
                     wrap **single asterisks around text** for{" "}
                     <strong>bolded font</strong>
                   </p>
-                  <div class="markdownContainer">
-                    <MDEditor value={value} onChange={setValue} />
+                  <div className="markdownContainer">
+                    <MDEditor
+                      value={announcementBody}
+                      onChange={setAnnouncementBody}
+                    />
                   </div>
                 </div>
                 <button
                   type="submit"
-                  class="btn btn-primary modal-footer mt-3"
+                  className="btn btn-primary modal-footer mt-3"
                   data-bs-dismiss="modal"
                 >
                   Create Announcement

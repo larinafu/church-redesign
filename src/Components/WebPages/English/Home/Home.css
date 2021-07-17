@@ -1,4 +1,49 @@
 .homeCarousel {
-    height: 32rem;
-    background: #777;
+  height: 32rem;
+  background: #777;
 }
+
+.homeSectionContaienr {
+  /* margin: 2rem auto 2rem auto; */
+}
+
+.homeBody {
+  /* margin: 0 auto;
+    width: 100vw; */
+}
+
+.homeBody ul {
+  width: 100%;
+}
+
+.homeMarkdownContainer ul li:nth-child(2) {
+  /* display: none; */
+}
+
+.w-md-editor-content {
+  /* display: flex;
+    flex-direction: column; */
+}
+
+.w-md-editor-toolbar {
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* flex-wrap: wrap; */
+  /* flex-direction: column; */
+  /* padding-bottom: 3rem; */
+}
+
+.w-md-editor-toolbar ul {
+  /* display: flex;
+    flex-wrap: wrap; */
+}
+
+.w-md-editor {
+  /* height: 50rem!important; */
+}
+
+/* @media screen and (max-width: 60em) {
+  .w-md-editor-toolbar ul:nth-child(1) {
+    display: none;
+  }
+} */

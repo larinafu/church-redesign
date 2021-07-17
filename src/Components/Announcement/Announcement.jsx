@@ -2,7 +2,6 @@ import { useState } from "react";
 import MDEditor from "@uiw/react-md-editor";
 import "./Announcement.css";
 
-import pencil from "../../Images/pencil-square.svg";
 const Announcement = (props) => {
   const [announcementDesc, setAnnouncementDesc] = useState("");
   const handleAnnouncementSubmit = () => {
@@ -12,7 +11,7 @@ const Announcement = (props) => {
   return (
     <>
       <section>
-        <div className="card announcementCard border-0 border-top">
+        <div className="card announcementCard border-0 border-top text-start">
           <div className="card-header cardHeader">
             <div className="modAnnouncementNameContainer">
               <div
@@ -42,7 +41,7 @@ const Announcement = (props) => {
                 <div
                   className="modal fade"
                   id="editAnnouncementModal"
-                  tabindex="-1"
+                  tabIndex="-1"
                   aria-labelledby="exampleModalLabel"
                   aria-hidden="true"
                 >
@@ -107,7 +106,7 @@ const Announcement = (props) => {
                     width="25"
                     height="25"
                     fill="currentColor"
-                    class="bi bi-pen"
+                    className="bi bi-pen"
                     viewBox="0 0 16 16"
                   >
                     <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
@@ -120,7 +119,7 @@ const Announcement = (props) => {
                   width="25"
                   height="25"
                   fill="currentColor"
-                  class="bi bi-trash"
+                  className="bi bi-trash"
                   viewBox="0 0 16 16"
                 >
                   <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
