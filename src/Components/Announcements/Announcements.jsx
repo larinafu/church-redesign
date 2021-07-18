@@ -38,8 +38,8 @@ const Announcements = (props) => {
           modName={doc.data().mod}
           announcementDate={doc.data().date}
           announcementBody={doc.data().description}
+          announcementId={doc.id}
           isModerator={props.isModerator}
-          value={announcementBody}
           announcementAuthor={doc.data().user}
           modUser={props.modUser}
           modType={props.modType}
