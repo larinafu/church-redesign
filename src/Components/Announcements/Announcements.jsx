@@ -14,8 +14,6 @@ import db from "../Firestore/Firestore";
 
 const Announcements = (props) => {
   const [announcements, setAnnouncements] = useState([]);
-  const [announcementIds, setAnnouncementIds] = useState([]);
-  const [announcementTitle, setAnnouncementTitle] = useState("");
   const [announcementChange, setAnnouncementChange] = useState(false);
   const [announcementBody, setAnnouncementBody] =
     useState("**Hello world!!!**");
@@ -34,7 +32,6 @@ const Announcements = (props) => {
       .get()
       .then((snapshot) => {
         setAnnouncements([]);
-        setAnnouncementIds([]);
         snapshot.docs.forEach((doc) => {
           renderAnnouncements(doc);
         });
@@ -57,8 +54,6 @@ const Announcements = (props) => {
         />
       </li>,
     ]);
-
-    setAnnouncementIds((announcementIds) => [...announcementIds, doc.id]);
   };
 
   const submitAnnouncementToFirestore = () => {
@@ -67,7 +62,6 @@ const Announcements = (props) => {
       date: formatDate(new Date()),
       mod: props.modName,
       description: announcementBody,
-      title: announcementTitle,
       user: props.modUser,
     });
     setAnnouncementChange(!announcementChange);
@@ -128,17 +122,6 @@ const Announcements = (props) => {
                   submitAnnouncementToFirestore();
                 }}
               >
-                {/* <div className="addAnnouncementInput">
-                  <label className="text-start" htmlFor="annoucementTitle">
-                    Title
-                  </label>
-                  <input
-                    id="annoucementTitle"
-                    name="annoucementTitle"
-                    type="text"
-                    onChange={(e) => setAnnouncementTitle(e.target.value)}
-                  />
-                </div> */}
                 <div className="addAnnouncementInput">
                   <h3 className="fs-2 fw-light">
                     This announcement feature uses markdown!
