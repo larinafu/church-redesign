@@ -18,14 +18,6 @@ const Announcements = (props) => {
   const [announcementBody, setAnnouncementBody] =
     useState("**Hello world!!!**");
 
-  const formatDate = (dateObject) => {
-    let date = JSON.stringify(dateObject);
-    let year = date.substring(1, 5);
-    let month = date.substring(6, 8);
-    let day = date.substring(9, 11);
-    return month + "/" + day + "/" + year;
-  };
-
   useEffect(() => {
     db.collection("announcements")
       .orderBy("timestamp", "desc")
@@ -59,7 +51,7 @@ const Announcements = (props) => {
   const submitAnnouncementToFirestore = () => {
     db.collection("announcements").add({
       timestamp: new Date(),
-      date: formatDate(new Date()),
+      date: new Date().toLocaleDateString("en-US"),
       mod: props.modName,
       description: announcementBody,
       user: props.modUser,
