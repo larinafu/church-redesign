@@ -62,7 +62,7 @@ const Home = (props) => {
                   value={props.homeBody}
                   onChange={props.setHomeBody}
                   preview={props.isMobile ? 'edit':'live'}
-                  height={400}
+                  height={600}
                 />
               </div>
             ) : (
