@@ -94,8 +94,9 @@ const Announcement = (props) => {
               </>
             )}
           </div>
-          {(props.modType==='master' || props.modUser === props.announcementAuthor) && (
-            <div className="card-footer bg-white border-0 announcementFooter">
+
+          <div className="card-footer bg-white border-0 announcementFooter">
+            {props.modUser === props.announcementAuthor && (
               <button
                 className="btn"
                 data-bs-toggle="modal"
@@ -114,6 +115,9 @@ const Announcement = (props) => {
                   </svg>
                 </div>
               </button>
+            )}
+            {(props.modType === "master" ||
+              props.modUser === props.announcementAuthor) && (
               <div data-bs-toggle="tooltip" title="delete announcement">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -130,8 +134,8 @@ const Announcement = (props) => {
                   />
                 </svg>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </section>
     </>
