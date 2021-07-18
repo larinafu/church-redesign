@@ -33,7 +33,7 @@
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 50%;
-    z-index: 3000
+    z-index: 1020;
 }
 
 .shieldLockBtn:hover,
