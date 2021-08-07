@@ -4,6 +4,8 @@ import "./Announcement.css";
 
 const Announcement = (props) => {
   const [announcementDesc, setAnnouncementDesc] = useState("");
+  const [announcementId, setAnnouncementId] = useState("")
+  const [showEditAnnouncement, setShowEditAnnouncement] = useState(false)
 
   const handleAnnouncementSubmit = () => {
     {
@@ -34,73 +36,20 @@ const Announcement = (props) => {
               </div>
             </div>
             <p>{props.announcementDate || "12/12/12"}</p>
+            {props.announcementId}
           </div>
           <div className="card-body">
             <MDEditor.Markdown source={props.announcementBody} />
-            {props.isModerator && (
-              <>
-                <div
-                  className="modal fade"
-                  id="editAnnouncementModal"
-                  tabIndex="-1"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
-                >
-                  <div className="modal-dialog">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">
-                          Modal title
-                        </h5>
-                        <button
-                          type="button"
-                          className="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div className="modal-body">
-                        <form
-                          onSubmit={(e) => {
-                            e.preventDefault();
-                            handleAnnouncementSubmit();
-                          }}
-                        >
-                          <label htmlFor="announcementDesc">Description</label>
-                          <textarea
-                            id="announcementDesc"
-                            name="announcementDesc"
-                            onChange={(e) =>
-                              setAnnouncementDesc(e.target.value)
-                            }
-                          ></textarea>
-                          <button type="submit" className="btn btn-primary">
-                            Save changes
-                          </button>
-                        </form>
-                      </div>
-                      <div className="modal-footer">
-                        <button
-                          type="button"
-                          className="btn btn-secondary"
-                          data-bs-dismiss="modal"
-                        >
-                          Close
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </>
-            )}
           </div>
 
           <div className="card-footer bg-white border-0 announcementFooter">
+            {props.announcementId}
             {props.modUser === props.announcementAuthor && (
               <button
                 className="btn"
                 data-bs-toggle="modal"
                 data-bs-target="#editAnnouncementModal"
+                onClick={()=>{setAnnouncementId(props.announcementId)}}
               >
                 <div data-bs-toggle="tooltip" title="edit announcement">
                   <svg
@@ -137,6 +86,58 @@ const Announcement = (props) => {
             )}
           </div>
         </div>
+        {props.isModerator && (
+          <>
+            <div
+              className="modal fade"
+              id="editAnnouncementModal"
+              tabIndex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              {announcementId}
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel">
+                      Modal title
+                      {announcementId}
+                    </h5>
+                    <button
+                      type="button"
+                      className="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div className="modal-body">
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        handleAnnouncementSubmit();
+                      }}
+                    >
+                      <MDEditor
+                        value={props.announcementBody}
+                        onChange={props.setAnnouncementBody}
+                      />
+                      <button
+                        type="submit"
+                        className="btn btn-primary"
+                        data-bs-dismiss="modal"
+                        onClick={() => {
+                          console.log(props.announcementBody);
+                        }}
+                      >
+                        Save changes
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
       </section>
     </>
   );
